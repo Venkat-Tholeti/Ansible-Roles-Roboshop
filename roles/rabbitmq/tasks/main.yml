@@ -17,7 +17,7 @@
        enabled: yes
 
    - name: Create Rabbitmq user
-     rabbitmq.rabbitmq_user:
+     community.rabbitmq.rabbitmq_user:
        user: roboshop
        password: roboshop123
        permissions:
