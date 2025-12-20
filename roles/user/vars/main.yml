@@ -1,0 +1,4 @@
+---
+
+MONGODB_HOST: mongodb.devopsaws.store
+REDIS_HOST: redis.devopsaws.store
