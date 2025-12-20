@@ -38,11 +38,10 @@
       shell: mongosh --host mongodb.devopsaws.store < /app/db/master-data.js
       when: catalogue_output.stdout | int < 0
       
-    
     - name: SYSTEMD 
       include_role:
-        name: common
-        tasks_from: systemd
+       name: common
+       tasks_from: systemd 
 
 
        
