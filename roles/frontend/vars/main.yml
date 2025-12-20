@@ -3,5 +3,5 @@
 CATALOGUE_HOST: catalogue.devopsaws.store
 USER_HOST: user.devopsaws.store
 CART_HOST: cart.devopsaws.store
-SHIIPING_HOST: shipping.devopsaws.store
+SHIPPING_HOST: shipping.devopsaws.store
 PAYMENT_HOST: payment.devopsaws.store
