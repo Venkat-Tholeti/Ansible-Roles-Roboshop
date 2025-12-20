@@ -1,0 +1,27 @@
+---
+
+- name: Install Maven & MYSQL CLIENT
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - maven 
+  - mysql
+
+- name: Install PYMYSQL & Cryptography DEPENDENCY  # THIS DEPENDENCY IS USED TO AVOID FAILURE WHEN LOGGING IN AND CONNECTING TO MYSQL USING APP SERVER
+  pip:
+    name: "{{ item }}"
+    executable: pip3.9
+  loop:
+  - cryptography 
+  - PyMySQL 
+
+- name: Download The Dependencies
+  command: mvn clean package 
+  args: 
+    chdir: /app
+
+- name: Rename The JAR file
+  command: mv target/"{{ component }}"-1.0.jar "{{ component }}".jar 
+  args:
+    chdir: /app

@@ -1,2 +1,51 @@
 ---
 
+   
+
+   - name: APPLICATION SETUP
+     include_role:
+      name: common
+      tasks_from: appcode_install
+
+   - name: MAVEN SETUP
+     include_role:
+      name: common
+      tasks_from: maven_install
+
+
+
+   - name: Installing MYSQL Client
+     package:
+         name: mysql
+         state: present
+  
+   
+
+  #  - name: Connect To Mysql Using App User
+  #    community.mysql.mysql_info:
+  #      login_user: shipping
+  #      login_password: RoboShop@1
+  #      login_host: mysql.devopsaws.store
+  #      login_db: cities
+
+   - name: Import data
+     tags: # TAGS ARE LABELS TO TASKS,PLAYS & ROLES, USING THESE LABELS WE CAN RUN SPECIFIC TASKS ONLY,RATHER THAN WHOLE PLAYBOOK OR WHOLE TASKS
+      - import #TAG LABEL OR TAG VALUE OR TAG NAME, WHILE RUNNING WE WILL USe -t (tags) & tag name for example : -t import(Here import is tag name)
+     mysql_db:
+      name: all
+      login_user: "{{ MYSQL_USER }}"
+      login_password: "{{ MYSQL_PASSWORD }}"
+      login_host: "{{ MYSQL_HOST }}"
+      state: import
+      target: "{{ item }}"
+     loop:
+      - /app/db/schema.sql
+      - /app/db/app-user.sql
+      - /app/db/master-data.sql
+
+
+   - name: SYSTEMD
+     include_role:
+      name: common
+      tasks_from: systemd
+    
