@@ -1,0 +1,5 @@
+---
+- name: Restart nginx # Name should be same as notify in main.yml
+  service:
+    name: nginx
+    state: restarted
