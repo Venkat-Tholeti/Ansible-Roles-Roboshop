@@ -17,7 +17,7 @@
        enabled: yes
 
    - name: Create Rabbitmq user
-     rabbitmq_user:
+     rabbitmq.rabbitmq_user:
        user: roboshop
        password: roboshop123
        permissions:
@@ -26,3 +26,4 @@
           read_priv: .*
           write_priv: .*
        state: present
+
