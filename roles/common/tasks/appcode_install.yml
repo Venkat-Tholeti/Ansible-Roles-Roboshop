@@ -14,11 +14,11 @@
 
 - name: Download The "{{ component }}" Code
   get_url: 
-    url: https://roboshop-artifacts.s3.amazonaws.com/"{{ component }}"-v3.zip
-    dest: /tmp/"{{ component }}".zip
+    url: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip
+    dest: /tmp/{{ component }}.zip
 
 - name: Unzipping The "{{ component }}" Code
   unarchive:
-    src: /tmp/"{{ component }}".zip
+    src: /tmp/{{ component }}.zip
     dest: /app 
     remote_src: yes # This means file already exist in "{{ component }}" server
