@@ -3,3 +3,5 @@
 CART_HOST: cart.devopsaws.store
 USER_HOST: user.devopsaws.store
 RABBITMQ_HOST: rabbitmq.devopsaws.store
+RABBITMQ_USER: roboshop
+RABBITMQ_PASSWORD: roboshop123
