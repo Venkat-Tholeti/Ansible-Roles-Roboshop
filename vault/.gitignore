@@ -1,0 +1,15 @@
+---
+
+#when you git pull, u cannot see this vault downloading into remote server and pushed into git  as it is ignored
+# It is not recommendend to push vaults or passwords into git
+
+vault/*.yml
+
+
+# FOR ANSIBLE COMMANDS TO BE EXECUTED IN REMOTE SERVER
+
+# mkdir vault
+# cd vault/
+# ansible-vault create mysql.yml
+# GIVE YOUR OWN password and secure what you want to secure inside that file
+# ansible-vault view  mysql.yml (To view )

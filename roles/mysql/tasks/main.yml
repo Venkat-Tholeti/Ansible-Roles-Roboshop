@@ -12,4 +12,4 @@
         enabled: yes
 
     - name: Setup Root Password
-      command: mysql_secure_installation --set-root-pass RoboShop@1
+      command: mysql_secure_installation --set-root-pass {{ MYSQL_ROOT_PASSWORD }}

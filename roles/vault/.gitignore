@@ -1,5 +1,0 @@
----
-
-#when you git pull, u cannot see this vault downloading into remote server as it is ignored
-
-vault/*.yml
