@@ -13,3 +13,6 @@ vault/*.yml
 # ansible-vault create mysql.yml
 # GIVE YOUR OWN password and secure what you want to secure inside that file
 # ansible-vault view  mysql.yml (To view )
+
+#TO EXECUTE
+#ansible-playbook -i inventory.ini mysql.yml -e "component=mysql" --ask-vault-pass
