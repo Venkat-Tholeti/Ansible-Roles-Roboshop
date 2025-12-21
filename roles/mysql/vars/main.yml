@@ -1,0 +1,6 @@
+---
+
+MYSQL_ROOT_PASSWORD: "{{ lookup('amazon.aws.aws_ssm', '/roboshop/mysql/mysql_root_password', region='us-east-1', decrypt=True ) }}"
+
+#INSTEAD OF USING ANSIBLE VAULT WHICH IS BIT TOUGH , WE ARE USING AMAZON SSM PARAMETERS FUNCTION TO ENCRYPT AN DDECRYPT PASSWORDS
+
