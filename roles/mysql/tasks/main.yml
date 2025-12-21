@@ -13,7 +13,7 @@
 
     - name: Install boto3 and botocore # TO INTERACT WITH AWS SSM PARAMETER TO ENCRYPT AND DECRYPT PASSWORDS
       pip:
-       name:
+       name: "{{ item }}"
       executable: pip3.9
       loop:
       - boto3
