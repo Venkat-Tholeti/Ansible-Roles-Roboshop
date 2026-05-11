@@ -1,5 +1,5 @@
 ---
- - name: "{{ Component }}" setup
+ - name: "{{ Component }} setup"
    hosts: "{{ Component }}"
    become: yes
    roles:
