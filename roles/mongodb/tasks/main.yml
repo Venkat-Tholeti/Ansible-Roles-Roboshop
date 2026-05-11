@@ -1,0 +1,22 @@
+- name: copy mongo repo to Mongodb server
+  copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install mongodb 
+  package:
+    name: mongodb-org
+    state: present
+
+- name: Start & Enable MongoDB Service
+  service:
+      name: mongod
+      state: started
+      enabled: yes
+
+- name: Allow remote connections
+  replace:
+      path: /etc/mongod.conf
+      regexp: '127.0.0.1' # To be replaced  
+      replace: '0.0.0.0'  # To be replaced with
+  notify: Restart_MongoDb # notifying handlers to restart rather than writing the restart block again

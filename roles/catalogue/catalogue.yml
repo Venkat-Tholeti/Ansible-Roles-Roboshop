@@ -1,0 +1,43 @@
+---
+  - name: Configuring Catalogue Component
+    hosts: catalogue
+    become: yes
+    tasks:
+     
+
+          
+     
+
+
+
+      - name: Copy mongo repo
+        copy:
+          src: mongo.repo
+          dest: /etc/yum.repos.d/mongo.repo
+
+      - name: Install MongoDb client
+        package:
+            name: mongodb-mongosh
+            state: present
+
+      - name: check products loaded or not
+        command: 
+          mongosh --host mongodb.devopsaws.store --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+        register: catalogue_output
+
+      - name: print catalogue output
+        debug:
+          msg: "{{ catalogue_output }}"
+
+      - name: load products
+        shell: 
+          mongosh --host mongodb.devopsaws.store < /app/db/master-data.js
+        when: catalogue_output.stdout | int < 0
+
+
+    handlers:
+        - name: Reload systemd
+          systemd:
+            daemon_reload: true
+
+          

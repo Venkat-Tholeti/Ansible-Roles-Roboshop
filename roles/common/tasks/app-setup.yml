@@ -1,0 +1,25 @@
+- name: Creating System User
+  user:
+      name: roboshop
+      shell: /sbin/nologin
+      system: true #for system user
+      home: /app
+
+- name: Create App Directory
+  file: 
+    path: /app
+    state: directory
+
+- name: Download Catalogue code
+  get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+      dest: /tmp/catalogue.zip
+
+- name: Extract catalogue code
+  unarchive:
+      src: /tmp/catalogue.zip
+      dest: /app
+      remote_src: yes
+# remote_src :no (default): file is copied from controller then extracted
+# remote_src:yes : file already exists on remote host
+    

@@ -1,0 +1,16 @@
+- name: Disable default nodejs
+  command: # there is no module for disabling specific version so we are going with command module
+    dnf module disable nodejs -y
+
+- name: Enable nodejs:20
+  command: # there is no module for enabling specific version so we are going with command module
+      dnf module enable nodejs:20 -y
+
+- name: Install nodejs
+  package:
+    name: nodejs
+    state: present
+
+- name: Install Dependencies
+  community.general.npm:
+        path: /app
