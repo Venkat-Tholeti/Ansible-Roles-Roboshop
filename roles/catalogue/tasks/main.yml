@@ -32,7 +32,7 @@
        mongosh --host mongodb.devopsaws.store < /app/db/master-data.js
      when: catalogue_output.stdout | int < 0
 
-   - name: Nodejs Setup
+   - name: Systemd Service
      include_role:
       name: common
       tasks_from: systemd
