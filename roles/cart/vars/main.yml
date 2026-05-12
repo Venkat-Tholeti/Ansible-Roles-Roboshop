@@ -1,0 +1,2 @@
+REDIS_HOST: redis.devopsaws.store
+CATALOGUE_HOST: catalogue.devopsaws.store

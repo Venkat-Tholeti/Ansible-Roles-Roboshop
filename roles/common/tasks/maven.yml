@@ -1,0 +1,24 @@
+
+  - name: Install Maven,PyMySQL,cryptography & mysql-client
+    package:
+        name: "{{ item }}"
+        state: present
+    loop:
+      - maven
+      - python3-PyMySQL
+      - python3-cryptography
+      - mysql 
+ 
+ 
+  - name: Install maven Dependencies
+    command:
+        mvn clean package
+    args:
+        chdir: /app # To move into directory we use args
+
+
+  - name: Rename Jar file
+    command: 
+        mv target/"{{ component}}"-1.0.jar "{{ component }}".jar
+    args:
+        chdir: /app

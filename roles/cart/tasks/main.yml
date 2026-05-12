@@ -1,0 +1,19 @@
+
+   - name: App setup
+     include_role:
+        name: common
+        tasks_from: app-setup
+   
+   - name: Nodejs Setup
+     include_role:
+      name: common
+      tasks_from: nodejs
+
+   - name: Systemd Service
+     include_role:
+      name: common
+      tasks_from: systemd
+
+          
+
+          

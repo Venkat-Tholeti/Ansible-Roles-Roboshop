@@ -1,0 +1,4 @@
+CART_HOST: cart.devopsaws.store
+MYSQL_HOST: mysql.devopsaws.store
+MYSQL_ROOT_USER:  root
+MYSQL_ROOT_PASSWORD: RoboShop@1

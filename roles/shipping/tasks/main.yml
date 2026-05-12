@@ -1,0 +1,44 @@
+
+
+      - name: App setup
+        include_role:
+           name: common
+           tasks_from: app-setup
+
+     
+      - name: Maven setup
+        include_role:
+           name: common
+           tasks_from: maven
+
+       
+      # - name: connect to mysql using app user
+      #   community.mysql.mysql_info:
+      #     login_user: shipping
+      #     login_password: RoboShop@1
+      #     login_host: mysql.devopsaws.store
+      #     login_db: cities
+
+       
+      - name: import data
+        tags:
+        - import
+        community.mysql.mysql_db:
+          name: all
+          login_user: "{{ MYSQL_ROOT_USER }}"
+          login_password: "{{ MYSQL_ROOT_PASSWORD }}"
+          login_host: "{{ MYSQL_HOST }}"
+          state: import
+          target: "{{ item }}"
+        loop:
+        - /app/db/schema.sql
+        - /app/db/app-user.sql
+        - /app/db/master-data.sql
+        notify: Restart Shipping
+
+    
+      - name: Systemd Service
+        include_role:
+          name: common
+          tasks_from: systemd
+         

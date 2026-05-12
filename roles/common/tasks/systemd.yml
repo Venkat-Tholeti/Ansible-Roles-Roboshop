@@ -1,0 +1,11 @@
+- name: Copy "{{ component }}" service to system directory
+  template:  #here it will change from copy to template as we gave code in template fro catalogue service
+    src: "{{ component }}.service.j2" # here .j2 should be added
+    dest: /etc/systemd/system/"{{ component }}".service
+  notify: Reload systemd
+
+- name: Start & Enable "{{ component }}" Service
+  service:
+      name: "{{ component }}"
+      state: started
+      enabled: yes
