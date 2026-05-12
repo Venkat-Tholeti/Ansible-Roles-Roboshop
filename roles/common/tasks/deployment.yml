@@ -1,0 +1,29 @@
+- name: Stop the service
+  service:
+    name:  "{{ component }}"
+    state: stopped
+
+- name: Remove /app directory
+  file:
+     state: absent
+     path: /app
+
+- name: create /app directory
+  file:
+    state: directory
+    path: /app
+
+- name: download application
+  unarchive:
+   src: "https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v{{ app_version }}.zip"
+   dest: /app
+   remote_src: yes
+
+- name: install dependencies
+  npm:
+    path: /app
+
+- name: restart {{ component }}
+  service:
+    name: "{{ component }}"
+    state: restarted
